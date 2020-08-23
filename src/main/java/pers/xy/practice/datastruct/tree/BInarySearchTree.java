@@ -59,9 +59,38 @@ public class BInarySearchTree {
             if (isLeftChild)
                 targetParent.left = target.left;
         } else {
-
+            Node rightTreeMinNode = findRightTreeMinNode(target);
+            if (target == null) {
+                root = rightTreeMinNode;
+            } else if (isLeftChild) {
+                targetParent.left = rightTreeMinNode;
+            } else {
+                targetParent.right = rightTreeMinNode;
+            }
+            rightTreeMinNode.left = target.left;
         }
     }
 
+    /**
+     * 找到右子树中最小的值
+     *
+     * @param delete
+     * @return
+     */
+    private Node findRightTreeMinNode(Node delete) {
+        Node cur = delete.right;
+        Node parent = delete;
+
+        while (cur.left != null) {
+            parent = cur;
+            cur = cur.left;
+        }
+        if (cur.val != delete.val) { //
+            parent.left = cur.right;
+            cur.right = delete.right;
+        }
+
+        return cur;
+    }
 
 }
