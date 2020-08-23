@@ -50,4 +50,12 @@ public class AVL {
 
     }
 
+    public void rightLeftRotate(Node node) {
+
+        leftRotate(node.right);
+
+        rightRotate(node);
+    }
+
+
 }
