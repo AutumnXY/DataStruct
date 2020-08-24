@@ -6,7 +6,7 @@ package pers.xy.practice.datastruct.tree;
  */
 public class AVLTest {
 
-    private static int arr[] = {3, 2, 1, 4, 5, 6, 7, 16, 15, 14, 13, 12, 11, 10, 8, 9};
+    private static int arr[] = {3, 2, 1, 4, 5, 6, 7, 16, 15, 14, 13, 12, 11, 10, 8, 9, 0};
 
 
     public static void main(String[] args) {
@@ -18,6 +18,10 @@ public class AVLTest {
             System.out.printf("%d ", arr[i]);
             tree.insert(arr[i]);
         }
+
+        i = 6;
+        System.out.printf("\n== 删除根节点: %d", i);
+        tree.remove(i);
 
     }
 }

@@ -103,19 +103,19 @@ public class AVL {
             if (Math.abs(height(node.left) - height(node.right)) == 2) {
                 Node l = node.left;
                 if (height(l.left) > height(l.right)) {
-                    node = leftRightRotate(node);
+                    node = rightRotate(node);
                 } else {
-                    node = (node);
+                    node = rightLeftRotate(node);
                 }
             }
-        } else if (compare > 1) {// 去左面接着找
+        } else if (compare > 0) {// 去左面接着找
             node.left = remove(node.left, toDel);
             if (Math.abs(height(node.left) - height(node.right)) == 2) {
                 Node r = node.right;
                 if (height(r.left) > height(r.right)) {
-                    node = rightRotate(node);
+                    node = leftRightRotate(node);
                 } else {
-                    node = rightLeftRotate(node);
+                    node = leftRotate(node);
                 }
             }
         } else { // 找到了，
@@ -141,12 +141,19 @@ public class AVL {
     }
 
     private Node findChildTreeMin(Node root) {
-
-        return null;
+        Node min = root.left;
+        while (min.left != null) {
+            min = min.left;
+        }
+        return min;
     }
 
     private Node findChildTreeMax(Node root) {
-        return null;
+        Node max = root.right;
+        while (max.left != null) {
+            max = max.left;
+        }
+        return max;
     }
 
     public Node search(int number) {
@@ -158,15 +165,15 @@ public class AVL {
 
     private Node searchNode(Node node, int number) {
 
-        int compare = compare(root.val, number);
+        int compare = compare(node.val, number);
         if (compare < 0) {// 往右
-            searchNode(node.right, number);
+            return searchNode(node.right, number);
         } else if (compare > 0) {// 往左
-            searchNode(node.left, number);
+            return searchNode(node.left, number);
         } else {
             return node;
         }
-        return null;
+
     }
 
 
