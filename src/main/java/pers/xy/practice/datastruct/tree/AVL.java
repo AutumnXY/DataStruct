@@ -105,7 +105,7 @@ public class AVL {
                 if (height(l.left) > height(l.right)) {
                     node = rightRotate(node);
                 } else {
-                    node = rightLeftRotate(node);
+                    node = leftRightRotate(node);
                 }
             }
         } else if (compare > 0) {// 去左面接着找
@@ -113,7 +113,7 @@ public class AVL {
             if (Math.abs(height(node.left) - height(node.right)) == 2) {
                 Node r = node.right;
                 if (height(r.left) > height(r.right)) {
-                    node = leftRightRotate(node);
+                    node = rightLeftRotate(node);
                 } else {
                     node = leftRotate(node);
                 }
